@@ -99,6 +99,6 @@ export const hobbies = [
 export const skills = {
   backend: ['C', 'C#/.NET', 'Java', 'Python', 'Go', 'SQL'],
   frontend: ['JavaScript', 'HTML', 'HTMX', 'PHP', 'CSS', 'VueJS'],
-  languages: ['French (Native)', 'English (Fluent, TOEIC 900/990)'],
-  softSkills: ['Adaptability & Teamwork', 'Communication', 'Positivity & Motivation'],
+  languages: ['French (Native)', 'English (Fluent, TOEIC 900/990)', 'Chinese HSK4'],
+  softSkills: ['Adaptability', 'Teamwork', 'Communication', 'Positivity', 'Motivation'],
 };

@@ -12,7 +12,7 @@ export function ReadmeCard({ children, className = '' }: ReadmeCardProps) {
       <div className="flex items-center justify-between px-4 py-3 bg-github-bg/50 border-b border-github-border">
         <div className="flex items-center gap-2 text-sm text-github-text-muted">
           <FileCode className="w-4 h-4" />
-          <span>enzorudysekkai / README.md</span>
+          <span>README.md</span>
         </div>
       </div>
       {/* Content */}
