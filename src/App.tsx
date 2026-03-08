@@ -34,7 +34,7 @@ function App() {
               {/* Header */}
               <div className="mb-6">
                 <h2 className="text-2xl font-bold text-white mb-2">
-                  <span className="text-github-text-muted">#</span> ENZO RUDY SEKKAI
+                  ENZO RUDY SEKKAI
                 </h2>
                 <div className="w-full h-px bg-github-border my-4" />
               </div>

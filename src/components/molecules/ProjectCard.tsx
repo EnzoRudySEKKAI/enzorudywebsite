@@ -27,7 +27,6 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
         </div>
         <div>
           <h3 className="text-lg font-semibold text-white">{project.name}</h3>
-          <p className="text-sm text-github-text-muted">@enzorudysekkai / main</p>
         </div>
       </div>
 

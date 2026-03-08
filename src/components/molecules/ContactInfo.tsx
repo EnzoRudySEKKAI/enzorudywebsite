@@ -20,15 +20,6 @@ export function ContactInfo() {
         <span>{shanghaiTime}</span>
       </div>
       <div className="flex items-center gap-2 text-github-text-muted">
-        <Link2 className="w-4 h-4" />
-        <a
-          href="https://enzorudysekkai.notion.site"
-          className="hover:text-github-accent transition-colors"
-        >
-          Portfolio
-        </a>
-      </div>
-      <div className="flex items-center gap-2 text-github-text-muted">
         <Linkedin className="w-4 h-4" />
         <a
           href="https://linkedin.com/in/enzorudysekkai"
