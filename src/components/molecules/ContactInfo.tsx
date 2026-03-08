@@ -1,4 +1,4 @@
-import { Building2, MapPin, Link2, Linkedin, Mail } from 'lucide-react';
+import { Building2, MapPin, Linkedin, Mail } from 'lucide-react';
 import { useShanghaiTime } from '@/hooks';
 import { Clock } from 'lucide-react';
 
