@@ -1,3 +1,5 @@
+import { Routes, Route, useLocation } from 'react-router-dom';
+import { useEffect } from 'react';
 import {
   ProfileSidebar,
   ReadmeCard,
@@ -6,10 +8,17 @@ import {
   EducationSection,
   ProjectsSection,
   HobbiesSection,
-  Footer,
+  CompanyProjectSection,
+  LanguageToggle,
 } from '@/components';
+import { ScrollToTop } from '@/components/utils/ScrollToTop';
+import { VemakinPage } from '@/pages';
+import { LanguageProvider, useLanguage, enTranslations, zhTranslations } from '@/i18n';
 
-function App() {
+function HomePage() {
+  const { language } = useLanguage();
+  const t = language === 'zh' ? zhTranslations : enTranslations;
+
   return (
     <div className="min-h-screen bg-github-bg">
       {/* Background gradient */}
@@ -29,33 +38,32 @@ function App() {
             className="flex-1 min-w-0 space-y-6 opacity-0 animate-fade-in-right"
             style={{ animationDelay: '0.2s', animationFillMode: 'forwards' }}
           >
+            {/* Language Toggle - Top right of content area */}
+            <div className="flex justify-end">
+              <LanguageToggle />
+            </div>
+
             {/* README Card */}
             <ReadmeCard>
               {/* Header */}
               <div className="mb-6">
                 <h2 className="text-2xl font-bold text-white mb-2">
-                  ENZO RUDY SEKKAI
+                  {t.header.name}
                 </h2>
                 <div className="w-full h-px bg-github-border my-4" />
               </div>
 
               {/* Bio */}
-              <p className="text-github-text mb-4">
-                Full-stack Software Engineer with expertise in backend development using C#/.NET, 
-                cloud infrastructure (Azure), and modern web technologies. A true jack of all trades 
-                — I can learn, discover, and understand anything I set my mind to. My extremely strong 
-                communication skills allow me to bridge the gap between technical and non-technical 
-                teams, making complex concepts accessible to everyone. Passionate about building 
-                scalable solutions, writing clean code, and continuously expanding my knowledge 
-                across the entire technology stack. An AI enthusiast who leverages agentic coding 
-                to boost productivity and build smarter solutions.
-              </p>
+              <BioSection />
 
               <div className="w-full h-px bg-github-border my-4" />
 
               {/* Skills Section */}
               <SkillsSection />
             </ReadmeCard>
+
+            {/* Company Project Section */}
+            <CompanyProjectSection />
 
             {/* Experience */}
             <ExperienceSection />
@@ -68,13 +76,100 @@ function App() {
 
             {/* Hobbies & Interests */}
             <HobbiesSection />
-
-            {/* Footer */}
-            <Footer />
           </div>
         </div>
       </main>
     </div>
+  );
+}
+
+function BioSection() {
+  const { language } = useLanguage();
+  const t = language === 'zh' ? zhTranslations : enTranslations;
+
+  return (
+    <div className="text-github-text mb-4 space-y-4">
+      <p>{t.bio.intro}</p>
+      
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+          <h3 className="text-white font-semibold mb-2">{t.bio.technicalExpertise.title}</h3>
+          <p className="text-sm">{t.bio.technicalExpertise.content}</p>
+        </div>
+        <div>
+          <h3 className="text-white font-semibold mb-2">{t.bio.coreStrengths.title}</h3>
+          <p className="text-sm">{t.bio.coreStrengths.content}</p>
+        </div>
+      </div>
+      
+      <p>{t.bio.closing}</p>
+    </div>
+  );
+}
+
+// Language detector component - only runs on first mount
+function LanguageDetector({ children }: { children: React.ReactNode }) {
+  const { setLanguage } = useLanguage();
+  const location = useLocation();
+
+  useEffect(() => {
+    // Only run on first mount if no language is set
+    const currentPath = location.pathname;
+    const savedLang = localStorage.getItem('preferred-language') as 'en' | 'zh' | null;
+    
+    if (savedLang) {
+      // Use saved preference
+      setLanguage(savedLang);
+      
+      // Update URL to match saved preference without navigation
+      if (savedLang === 'zh' && !currentPath.startsWith('/cn')) {
+        window.history.replaceState({}, '', '/cn' + currentPath);
+      } else if (savedLang === 'en' && currentPath.startsWith('/cn')) {
+        window.history.replaceState({}, '', currentPath.replace('/cn', '') || '/');
+      }
+    } else {
+      // Auto-detect on first visit
+      const browserLang = navigator.language.toLowerCase();
+      const isChinese = browserLang.startsWith('zh');
+      
+      if (isChinese) {
+        setLanguage('zh');
+        localStorage.setItem('preferred-language', 'zh');
+        if (!currentPath.startsWith('/cn')) {
+          window.history.replaceState({}, '', '/cn' + currentPath);
+        }
+      } else {
+        setLanguage('en');
+        localStorage.setItem('preferred-language', 'en');
+      }
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []); // Only run on mount
+
+  return <>{children}</>;
+}
+
+function AppRoutes() {
+  return (
+    <>
+      <ScrollToTop />
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/cn" element={<HomePage />} />
+        <Route path="/vemakin" element={<VemakinPage />} />
+        <Route path="/cn/vemakin" element={<VemakinPage />} />
+      </Routes>
+    </>
+  );
+}
+
+function App() {
+  return (
+    <LanguageProvider>
+      <LanguageDetector>
+        <AppRoutes />
+      </LanguageDetector>
+    </LanguageProvider>
   );
 }
 

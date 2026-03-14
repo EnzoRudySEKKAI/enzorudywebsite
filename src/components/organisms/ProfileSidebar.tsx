@@ -1,10 +1,13 @@
-import { Button } from '@/components/ui/button';
 import { ContactInfo } from '@/components/molecules';
+import { useLanguage } from '@/i18n';
 
 export function ProfileSidebar() {
+  const { language } = useLanguage();
+  const displayName = language === 'zh' ? 'Enzo Rudy SEKKAI 夏立' : 'Enzo Rudy SEKKAI';
+
   return (
     <aside
-      className="w-full lg:w-[296px] flex-shrink-0 opacity-0 animate-fade-in-left"
+      className="w-full lg:w-[296px] flex-shrink-0 opacity-0 animate-fade-in-left lg:sticky lg:top-8 lg:self-start"
       style={{ animationDelay: '0.1s', animationFillMode: 'forwards' }}
     >
       <div className="relative">
@@ -13,30 +16,19 @@ export function ProfileSidebar() {
           <div className="w-24 h-24 lg:w-[240px] lg:h-[240px] rounded-full overflow-hidden border-2 border-github-border bg-gradient-to-br from-github-card to-github-hover flex-shrink-0">
             <img
               src="/profile.jpg"
-              alt="Enzo Rudy SEKKAI"
+              alt={displayName}
               className="w-full h-full object-cover"
             />
           </div>
           <div>
             <h1 className="text-xl lg:text-2xl font-bold text-white mb-1">
-              Enzo Rudy SEKKAI
+              {displayName}
             </h1>
           </div>
         </div>
 
-        <p className="text-github-text mb-4">
-          Software Engineer | Building projects that solve real-world problems!!
-        </p>
-
         {/* Action Buttons */}
         <div className="space-y-2 mb-6">
-          <Button
-            variant="outline"
-            className="w-full bg-github-hover border-github-border text-github-text 
-                       hover:bg-github-border hover:text-white transition-all duration-200"
-          >
-            Profile
-          </Button>
         </div>
 
         {/* Contact Info */}

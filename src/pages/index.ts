@@ -1,0 +1,1 @@
+export { VemakinPage } from './VemakinPage';

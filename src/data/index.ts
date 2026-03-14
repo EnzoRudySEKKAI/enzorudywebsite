@@ -61,7 +61,7 @@ export const experiences: Experience[] = [
 
 export const education: Education[] = [
   {
-    degree: 'Chinese classes',
+    degree: 'Non diploma Chinese degree',
     school: 'Fudan University, Shanghai, China',
     period: '2025 - 2026',
   },
