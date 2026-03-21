@@ -29,7 +29,7 @@ export const zhTranslations = {
     education: '教育背景',
     projects: '精选项目',
     hobbies: '兴趣爱好',
-    companyProject: '我的公司项目',
+    companyProject: '我的公司',
   },
   skills: {
     backend: '后端',

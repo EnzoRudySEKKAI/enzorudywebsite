@@ -1,4 +1,4 @@
-import { ContactInfo } from '@/components/molecules';
+import { ContactInfo, ResumeNavLinks } from '@/components/molecules';
 import { useLanguage } from '@/i18n';
 
 export function ProfileSidebar() {
@@ -33,6 +33,11 @@ export function ProfileSidebar() {
 
         {/* Contact Info */}
         <ContactInfo />
+
+        {/* Navigation Links */}
+        <div className="mt-6 pt-6 border-t border-github-border">
+          <ResumeNavLinks />
+        </div>
       </div>
     </aside>
   );

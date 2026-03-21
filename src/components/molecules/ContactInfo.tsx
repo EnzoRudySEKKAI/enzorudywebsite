@@ -1,19 +1,19 @@
-import { Building2, MapPin, Linkedin, Mail } from 'lucide-react';
-import { useShanghaiTime } from '@/hooks';
-import { Clock } from 'lucide-react';
-import { useLanguage } from '@/i18n';
+import { Building2, MapPin, Linkedin, Mail } from "lucide-react";
+import { useShanghaiTime } from "@/hooks";
+import { Clock } from "lucide-react";
+import { useLanguage } from "@/i18n";
 
 export function ContactInfo() {
   const shanghaiTime = useShanghaiTime();
   const { language } = useLanguage();
-  const location = language === 'zh' ? '中国上海' : 'Shanghai, China';
+  const location = language === "zh" ? "中国上海" : "Shanghai, China";
 
   return (
     <div className="space-y-2 text-sm">
       <div className="flex items-center gap-2 text-github-text-muted">
         <Building2 className="w-4 h-4" />
         <a
-          href="https://vemakin.web.app"
+          href="https://vemakin.com"
           target="_blank"
           rel="noopener noreferrer"
           className="hover:text-github-accent transition-colors"

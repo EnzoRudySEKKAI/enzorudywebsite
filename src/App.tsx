@@ -10,6 +10,7 @@ import {
   HobbiesSection,
   CompanyProjectSection,
   LanguageToggle,
+  ScrollProgressButton,
 } from '@/components';
 import { ScrollToTop } from '@/components/utils/ScrollToTop';
 import { VemakinPage } from '@/pages';
@@ -59,26 +60,41 @@ function HomePage() {
               <div className="w-full h-px bg-github-border my-4" />
 
               {/* Skills Section */}
+            <div id="skills">
               <SkillsSection />
+            </div>
             </ReadmeCard>
 
             {/* Company Project Section */}
-            <CompanyProjectSection />
+            <div id="company-project">
+              <CompanyProjectSection />
+            </div>
 
             {/* Experience */}
-            <ExperienceSection />
+            <div id="experience">
+              <ExperienceSection />
+            </div>
 
             {/* Education */}
-            <EducationSection />
+            <div id="education">
+              <EducationSection />
+            </div>
 
             {/* Featured Projects */}
-            <ProjectsSection />
+            <div id="projects">
+              <ProjectsSection />
+            </div>
 
             {/* Hobbies & Interests */}
-            <HobbiesSection />
+            <div id="hobbies">
+              <HobbiesSection />
+            </div>
           </div>
         </div>
       </main>
+
+      {/* Scroll Progress Button */}
+      <ScrollProgressButton />
     </div>
   );
 }

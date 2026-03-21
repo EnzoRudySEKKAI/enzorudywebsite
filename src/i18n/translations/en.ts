@@ -29,7 +29,7 @@ export const enTranslations = {
     education: 'Education',
     projects: 'Featured Projects',
     hobbies: 'Hobbies & Interests',
-    companyProject: 'My Company Project',
+    companyProject: 'My company',
   },
   skills: {
     backend: 'Backend',
@@ -51,7 +51,7 @@ export const enTranslations = {
     },
     builtWith: 'Built with',
     moreInfo: 'More Information',
-    visitSite: 'Visit Live Site',
+    visitSite: 'Visit site',
   },
   vemakin: {
     title: 'Vemakin',
@@ -136,7 +136,7 @@ export const enTranslations = {
         content: 'Enterprise-grade security with encrypted connections and secure credential management.',
       },
     },
-    cta: 'Visit Vemakin Live Site',
+    cta: 'Vemakin site',
     backToPortfolio: 'Back to Portfolio',
   },
   experiences: [

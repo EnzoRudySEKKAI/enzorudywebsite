@@ -1,13 +1,22 @@
-import { useNavigate } from 'react-router-dom';
-import { Building2, ExternalLink, Film, Clapperboard, Package, FileText, CheckSquare, Route } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { SectionHeader } from '@/components/atoms';
-import { enTranslations, zhTranslations, useLanguage } from '@/i18n';
+import { useNavigate } from "react-router-dom";
+import {
+  Building2,
+  ExternalLink,
+  Film,
+  Clapperboard,
+  Package,
+  FileText,
+  CheckSquare,
+  Route,
+} from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { SectionHeader } from "@/components/atoms";
+import { enTranslations, zhTranslations, useLanguage } from "@/i18n";
 
 export function CompanyProjectSection() {
   const navigate = useNavigate();
   const { language } = useLanguage();
-  const t = language === 'zh' ? zhTranslations : enTranslations;
+  const t = language === "zh" ? zhTranslations : enTranslations;
 
   const features = [
     { icon: Clapperboard, label: t.companyProject.features.projectManagement },
@@ -18,16 +27,23 @@ export function CompanyProjectSection() {
     { icon: Route, label: t.companyProject.features.routePlanning },
   ];
 
-  const techStack = ['React 19', 'Go', 'TypeScript', 'PostgreSQL', 'Firebase', 'Google Cloud'];
+  const techStack = [
+    "React 19",
+    "Go",
+    "TypeScript",
+    "PostgreSQL",
+    "Firebase",
+    "Google Cloud",
+  ];
 
   return (
     <div className="mb-8">
       <SectionHeader title={t.sections.companyProject} icon={Building2} />
-      
+
       <div className="relative bg-github-card border border-github-border rounded-xl p-6 md:p-8 overflow-hidden">
         {/* Background gradient accent */}
         <div className="absolute top-0 right-0 w-64 h-64 bg-purple-900/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
-        
+
         <div className="relative z-10">
           {/* Header */}
           <div className="mb-6">
@@ -50,14 +66,18 @@ export function CompanyProjectSection() {
                 className="flex items-center gap-2 p-3 bg-github-bg/50 rounded-lg border border-github-border/50"
               >
                 <feature.icon className="w-4 h-4 text-github-accent" />
-                <span className="text-sm text-github-text">{feature.label}</span>
+                <span className="text-sm text-github-text">
+                  {feature.label}
+                </span>
               </div>
             ))}
           </div>
 
           {/* Tech Stack */}
           <div className="mb-6">
-            <p className="text-sm text-github-text-muted mb-2">{t.companyProject.builtWith}</p>
+            <p className="text-sm text-github-text-muted mb-2">
+              {t.companyProject.builtWith}
+            </p>
             <div className="flex flex-wrap gap-2">
               {techStack.map((tech) => (
                 <span
@@ -73,14 +93,20 @@ export function CompanyProjectSection() {
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-3">
             <Button
-              onClick={() => navigate('/vemakin')}
+              onClick={() => navigate("/vemakin")}
               className="bg-github-accent hover:bg-github-accent/90 text-white"
             >
               {t.companyProject.moreInfo}
             </Button>
             <Button
               variant="outline"
-              onClick={() => window.open('https://vemakin.web.app', '_blank', 'noopener,noreferrer')}
+              onClick={() =>
+                window.open(
+                  "https://vemakin.com",
+                  "_blank",
+                  "noopener,noreferrer",
+                )
+              }
               className="border-github-border text-github-text hover:bg-github-hover"
             >
               <ExternalLink className="w-4 h-4 mr-2" />
