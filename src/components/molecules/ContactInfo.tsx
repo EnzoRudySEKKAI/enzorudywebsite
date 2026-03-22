@@ -42,7 +42,7 @@ export function ContactInfo() {
       <div className="flex items-center gap-2 text-github-text-muted">
         <Linkedin className="w-4 h-4" />
         <a
-          href="https://linkedin.com/in/enzorudysekkai"
+          href="https://linkedin.com/in/enzo-rudy-sekkai"
           className="hover:text-github-accent transition-colors"
         >
           LinkedIn
