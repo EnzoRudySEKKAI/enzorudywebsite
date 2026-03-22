@@ -19,7 +19,7 @@ export const enTranslations = {
     },
     coreStrengths: {
       title: 'Core Strengths',
-      content: 'Jack of all trades — I can learn and master anything I set my mind to. Strong communicator who bridges technical and non-technical teams.',
+      content: 'Jack of all trades — I can learn and master anything I set my mind to. Strong communication skills that bridges technical and non-technical teams.',
     },
     closing: 'Passionate about continuously expanding my knowledge across the entire technology stack. AI enthusiast leveraging agentic coding to boost productivity and build smarter solutions.',
   },
@@ -136,8 +136,163 @@ export const enTranslations = {
         content: 'Enterprise-grade security with encrypted connections and secure credential management.',
       },
     },
+    technicalDeepDive: {
+      title: 'Technical Deep Dive',
+      subtitle: 'In-depth look at the engineering decisions and patterns behind Vemakin',
+      expandAll: 'Expand All',
+      collapseAll: 'Collapse All',
+      concurrency: {
+        title: 'Concurrency & Go Routines',
+        easySummary: 'Go routines are like lightweight threads that let the app do many things at once — like calculating routes between shots while the user keeps working without any delay.',
+        sections: {
+          goroutines: {
+            title: 'Go Routines in Action',
+            content: 'Go routines are the backbone of Vemakin\'s concurrency model. Each HTTP request is handled by a lightweight goroutine (typically 2-8KB stack, dynamically grown). Background tasks like route calculations between shot locations run in separate goroutines, ensuring the main request-response cycle is never blocked.',
+          },
+          channels: {
+            title: 'Channels for Communication',
+            content: 'Go channels provide type-safe communication between goroutines. Vemakin uses buffered channels to decouple route calculation requests from their execution, implementing a producer-consumer pattern. This prevents fast API responses from being slowed down by expensive Google Routes API calls.',
+          },
+          workerPool: {
+            title: 'Worker Pool Pattern',
+            content: 'A fixed pool of goroutines processes route calculation jobs from a shared channel. This controls resource consumption (especially API rate limits on Google Routes) while maximizing throughput. The pool size is tied to runtime.NumCPU() for optimal CPU utilization.',
+          },
+          parallelism: {
+            title: 'Concurrency vs Parallelism',
+            content: 'Concurrency is about dealing with many things at once; parallelism is about doing many things at once. Go\'s scheduler (GMP model: Goroutine-Machine-Processor) distributes goroutines across OS threads. With GOMAXPROCS=4, up to 4 goroutines execute truly in parallel. Vemakin leverages this for parallel DB queries and concurrent API calls.',
+          },
+        },
+      },
+      securityDeepDive: {
+        title: 'Security (OWASP & Best Practices)',
+        easySummary: 'Every user request is verified before processing. Passwords and tokens are never stored insecurely. The API follows industry-standard security practices to protect user data.',
+        sections: {
+          owasp: {
+            title: 'OWASP Top 10 Mitigations',
+            content: 'Vemakin addresses key OWASP risks: A01 (Broken Access Control) via per-request user ownership checks; A03 (Injection) via parameterized SQL queries; A05 (Security Misconfiguration) via strict CORS and minimal HTTP methods; A07 (Auth Failures) via Firebase JWT with automatic refresh; A09 (Logging Failures) via zerolog structured logging.',
+          },
+          csrf: {
+            title: 'CSRF Protection Strategy',
+            content: 'Vemakin uses a stateless JWT-based API architecture, which is inherently CSRF-resistant. The Authorization header (not cookies) carries the token, so browsers won\'t attach it to cross-origin requests automatically. SameSite=Strict cookies are used only for non-API session data. Additionally, CORS restricts allowed origins to known frontend domains.',
+          },
+          sqlInjection: {
+            title: 'SQL Injection Prevention',
+            content: 'All database queries use parameterized statements via pgx/sqlx. No string concatenation or fmt.Sprintf is ever used in query construction. Input validation via go-playground/validator enforces type safety before data reaches the repository layer.',
+          },
+          xssPrevention: {
+            title: 'XSS Prevention',
+            content: 'React automatically escapes JSX expressions, preventing reflected XSS. dangerouslySetInnerHTML is never used with user content. The backend validates and sanitizes all inputs using html.EscapeString for any string that might be rendered. Content-Security-Policy headers restrict script sources.',
+          },
+          tokenSecurity: {
+            title: 'JWT Token Management',
+            content: 'Firebase ID tokens expire after 1 hour. The Axios interceptor automatically refreshes tokens before they expire using user.getIdToken(true). Failed refresh attempts redirect to login. Tokens are verified server-side on every request using Firebase Admin SDK — client-side validation alone is never trusted.',
+          },
+          rateLimiting: {
+            title: 'Rate Limiting',
+            content: 'Echo middleware enforces 100 requests per minute per IP using a token bucket algorithm (golang.org/x/time/rate). This protects against brute-force attacks and API abuse. Rate limit headers (X-RateLimit-Remaining) inform clients of their quota.',
+          },
+        },
+      },
+      databaseOptimization: {
+        title: 'Database Optimization',
+        easySummary: 'The database is carefully designed with indexes for fast queries, smart data types for flexibility, and patterns like soft-delete to preserve data while keeping performance high.',
+        sections: {
+          indexing: {
+            title: 'Indexing Strategy',
+            content: 'PostgreSQL indexes are carefully chosen: B-tree indexes on foreign keys (user_id, project_id) for JOIN performance; partial indexes on deleted_at IS NULL to exclude soft-deleted rows from queries; composite indexes on frequently filtered columns (category + brand). The partial index on deleted_at saves ~30% index size since only active records are indexed.',
+          },
+          softDelete: {
+            title: 'Soft Delete Pattern',
+            content: 'All entities use a deleted_at timestamp column instead of physical deletion. This enables data recovery, audit trails, and prevents accidental data loss. Every query includes WHERE deleted_at IS NULL, enforced at the repository layer. A background cleanup worker hard-deletes records older than 90 days.',
+          },
+          jsonb: {
+            title: 'JSONB for Flexible Specs',
+            content: 'Equipment specifications vary wildly by category (cameras have sensors, lenses have focal lengths). Instead of a single wide table with many nullable columns, Vemakin uses category-specific specs tables with JSONB columns for array-type data (frame rates, codecs, recording media). This provides type safety for common fields while allowing flexibility for category-specific data.',
+          },
+          connectionPooling: {
+            title: 'Connection Pooling',
+            content: 'pgx maintains a connection pool (default 4-20 connections) to Cloud SQL. The Cloud SQL Auth Proxy handles IAM-based authentication and encryption, eliminating the need for static database credentials. Connection health checks prevent stale connections from causing errors.',
+          },
+          queryOptimization: {
+            title: 'Query Optimization Patterns',
+            content: 'Vemakin uses SELECT with explicit column lists (never SELECT *), batch inserts for catalog data, and context-based timeouts to prevent long-running queries. The sqlx library provides efficient struct scanning with named queries, reducing boilerplate while maintaining type safety.',
+          },
+        },
+      },
+      apis: {
+        title: 'APIs & Integrations',
+        easySummary: 'Vemakin connects to several Google services — for authentication, map-based route planning, and location search — plus an in-memory cache to make everything fast.',
+        sections: {
+          googleRoutes: {
+            title: 'Google Routes API',
+            content: 'The Google Routes API calculates driving, walking, cycling, and two-wheeler routes between shot locations. Vemakin caches results for 24 hours and enforces a 60-minute cooldown on recalculations to manage API costs. A fallback to OSRM (Open Source Routing Machine) ensures route calculation always works, even if the Google API is unavailable.',
+          },
+          googlePlaces: {
+            title: 'Google Places API',
+            content: 'The Places API powers location autocomplete when users create shots. Session tokens group autocomplete requests into a single billable session, reducing costs by ~80%. Requests are debounced on the frontend (300ms) to avoid excessive API calls during typing.',
+          },
+          firebaseAdmin: {
+            title: 'Firebase Admin SDK',
+            content: 'The Firebase Admin SDK runs server-side to verify ID tokens on every request. It runs asynchronously so verification doesn\'t block request processing. On first login, the middleware automatically creates a local user record synced with Firebase UID, ensuring data ownership from day one.',
+          },
+          bigCache: {
+            title: 'BigCache In-Memory Cache',
+            content: 'BigCache provides GC-friendly in-memory caching for the gear catalog (~1500 items). It avoids Go\'s garbage collector overhead by storing entries in byte arrays, not maps[string]interface{}. The cache is warmed on startup from a JSON file and refreshed every hour, reducing database queries by ~90% for catalog browsing.',
+          },
+          mountLinks: {
+            title: 'Mount System & Equipment Compatibility',
+            content: 'The gear catalog includes mount type data (E-mount, EF, PL, RF, L-mount) for cameras and lenses. This enables future features like compatibility warnings when assigning lenses to camera bodies in a shot. The mount field is stored as a typed VARCHAR with a foreign-key-like relationship to standardized mount names.',
+          },
+        },
+      },
+      frontendPatterns: {
+        title: 'Frontend Architecture Patterns',
+        easySummary: 'The frontend is organized into small reusable pieces, uses smart caching to avoid unnecessary network requests, and updates the UI optimistically for a snappy feel.',
+        sections: {
+          stateManagement: {
+            title: 'State Management Separation',
+            content: 'Vemakin cleanly separates three types of state: Server State (TanStack Query) handles API data with automatic caching, background refetching, and optimistic updates. Client State (Zustand) manages UI concerns like active project, theme, and modal visibility. Form State (React Hook Form + Zod) handles form validation with type-safe schemas.',
+          },
+          optimisticUpdates: {
+            title: 'Optimistic Updates',
+            content: 'When a user creates or updates an entity, the UI updates immediately before the API response arrives. If the API call fails, TanStack Query automatically rolls back to the previous state. This makes the app feel instant while maintaining data consistency.',
+          },
+          atomicDesign: {
+            title: 'Atomic Design Components',
+            content: 'Components follow atomic design: Atoms (Button, Input, Icon) → Molecules (FormField, Card) → Organisms (ProjectCard, ShotList) → Templates (DashboardLayout). This ensures consistency, reusability, and clear separation of concerns. Each component is typed with TypeScript interfaces.',
+          },
+          tanstackCaching: {
+            title: 'TanStack Query Cache Strategy',
+            content: 'Each data type has tuned cache settings: Categories (rarely change, 24h staleTime), Projects (1h staleTime), Shots (5min staleTime). Background refetching on window focus keeps data fresh without manual refresh. Query keys follow a structured pattern for precise cache invalidation.',
+          },
+        },
+      },
+      architectureDecisions: {
+        title: 'Architecture Decisions',
+        easySummary: 'Every technology was chosen for a reason — Go for speed and concurrency, Firebase for secure auth, Cloud Run for cost-effective hosting, and PostgreSQL for reliable data storage.',
+        sections: {
+          whyGo: {
+            title: 'Why Go?',
+            content: 'Go was chosen over Python (the original backend) for: 10x faster execution, native concurrency with goroutines, single binary deployment (no dependency hell), fast cold starts critical for Cloud Run\'s scale-to-zero model, and excellent PostgreSQL driver ecosystem (pgx, sqlx). The migration from FastAPI to Echo reduced response times from ~200ms to ~15ms.',
+          },
+          whyCloudRun: {
+            title: 'Why Google Cloud Run?',
+            content: 'Cloud Run provides serverless containers: pay per request (scales to zero when idle), automatic HTTPS, built-in load balancing, seamless Firebase Hosting integration via URL rewrites, and simple Docker-based deployment. Compared to always-on VMs, Cloud Run reduced infrastructure costs by ~70% for Vemakin\'s usage pattern.',
+          },
+          whyFirebase: {
+            title: 'Why Firebase Auth?',
+            content: 'Firebase Authentication handles the complexity of secure identity management: social login (Google) with one line of code, automatic token refresh, email/password with built-in validation, free tier covers up to 10K monthly active users, and battle-tested security by Google. It eliminates the need to build and maintain custom auth.',
+          },
+          repositoryPattern: {
+            title: 'Repository Pattern',
+            content: 'Every database entity has a dedicated repository struct that encapsulates all SQL queries. Handlers never touch SQL directly — they call repository methods with typed parameters. This separation enables easy unit testing with mock databases (sqlmock), clear dependency graphs, and the ability to swap database implementations without changing business logic.',
+          },
+        },
+      },
+    },
     cta: 'Vemakin site',
     backToPortfolio: 'Back to Portfolio',
+    vpnTooltip: 'May require VPN in mainland China',
   },
   experiences: [
     {
@@ -204,15 +359,15 @@ export const enTranslations = {
   hobbies: [
     {
       name: 'Traveling',
-      description: 'Exploring new places',
+      description: 'Discovering places and cultures',
     },
     {
       name: 'Movies',
-      description: 'Realization, production',
+      description: 'Realization, production and filmaking process',
     },
     {
-      name: 'AI and testing models',
-      description: 'Being updated',
+      name: 'AI',
+      description: 'Agentic coding, local models and benchmark',
     },
   ],
   contact: {

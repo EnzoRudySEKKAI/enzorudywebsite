@@ -81,17 +81,17 @@ export const education: Education[] = [
 export const hobbies = [
   {
     name: 'Traveling',
-    description: 'Exploring new places',
+    description: 'Discovering places and cultures',
     icon: Globe,
   },
   {
     name: 'Movies',
-    description: 'Realization, production',
+    description: 'Realization, production and filmaking process',
     icon: Film,
   },
   {
-    name: 'AI and testing models',
-    description: 'Being updated',
+    name: 'AI',
+    description: 'Agentic coding, local models and benchmark',
     icon: Brain,
   },
 ];

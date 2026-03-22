@@ -11,6 +11,7 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { SectionHeader } from "@/components/atoms";
+import { Tooltip, TooltipTrigger, TooltipContent } from "@/components/ui/tooltip";
 import { enTranslations, zhTranslations, useLanguage } from "@/i18n";
 
 export function CompanyProjectSection() {
@@ -98,20 +99,28 @@ export function CompanyProjectSection() {
             >
               {t.companyProject.moreInfo}
             </Button>
-            <Button
-              variant="outline"
-              onClick={() =>
-                window.open(
-                  "https://vemakin.com",
-                  "_blank",
-                  "noopener,noreferrer",
-                )
-              }
-              className="border-github-border text-github-text hover:bg-github-hover"
-            >
-              <ExternalLink className="w-4 h-4 mr-2" />
-              {t.companyProject.visitSite}
-            </Button>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Button
+                  variant="outline"
+                  onClick={() =>
+                    window.open(
+                      "https://vemakin.com",
+                      "_blank",
+                      "noopener,noreferrer",
+                    )
+                  }
+                  className="border-github-border text-github-text hover:bg-github-hover"
+                >
+                  <ExternalLink className="w-4 h-4 mr-2" />
+                  {t.companyProject.visitSite}
+                  <span className="text-github-accent cursor-help ml-1">*</span>
+                </Button>
+              </TooltipTrigger>
+              <TooltipContent side="bottom">
+                {t.vemakin.vpnTooltip}
+              </TooltipContent>
+            </Tooltip>
           </div>
         </div>
       </div>
