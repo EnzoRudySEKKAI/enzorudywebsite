@@ -1,6 +1,6 @@
 export const zhTranslations = {
   meta: {
-    title: 'Enzo Rudy SEKKAI 夏立 - 作品集',
+    title: 'Enzo Rudy SEKKAI (夏立) - 作品集',
     description: '全栈软件工程师，专注于使用C#/.NET进行后端开发、Azure云基础设施和现代Web技术。',
   },
   nav: {
@@ -9,7 +9,7 @@ export const zhTranslations = {
     zh: '中文',
   },
   header: {
-    name: 'ENZO RUDY SEKKAI 夏立',
+    name: 'ENZO RUDY SEKKAI (夏立)',
   },
   bio: {
     intro: '全栈软件工程师和多面手，专注于使用C#/.NET进行后端开发、Azure云基础设施和现代Web技术。',

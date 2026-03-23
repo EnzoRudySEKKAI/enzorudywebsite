@@ -1,14 +1,26 @@
-import { Building2, MapPin, Linkedin, Mail } from "lucide-react";
+import { Building2, MapPin, Linkedin, Mail, MessageCircle } from "lucide-react";
 import { useShanghaiTime } from "@/hooks";
 import { Clock } from "lucide-react";
 import { useLanguage, enTranslations, zhTranslations } from "@/i18n";
 import { Tooltip, TooltipTrigger, TooltipContent } from "@/components/ui/tooltip";
+import { useState } from "react";
 
 export function ContactInfo() {
   const shanghaiTime = useShanghaiTime();
   const { language } = useLanguage();
   const location = language === "zh" ? "中国上海" : "Shanghai, China";
   const t = language === "zh" ? zhTranslations.vemakin : enTranslations.vemakin;
+  const [copied, setCopied] = useState(false);
+
+  const copyWeChatId = async () => {
+    try {
+      await navigator.clipboard.writeText("SEKKAIXiali");
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch (err) {
+      console.error("Failed to copy:", err);
+    }
+  };
 
   return (
     <div className="space-y-2 text-sm">
@@ -57,6 +69,20 @@ export function ContactInfo() {
           enzorudy.sekkai@icloud.com
         </a>
       </div>
+      <Tooltip>
+        <TooltipTrigger asChild>
+          <div
+            className="flex items-center gap-2 text-github-text-muted cursor-pointer hover:text-github-accent transition-colors"
+            onClick={copyWeChatId}
+          >
+            <MessageCircle className="w-4 h-4" />
+            <span>WeChat: SEKKAIXiali</span>
+          </div>
+        </TooltipTrigger>
+        <TooltipContent side="bottom">
+          {copied ? "Copied!" : "Click to copy WeChat ID"}
+        </TooltipContent>
+      </Tooltip>
     </div>
   );
 }

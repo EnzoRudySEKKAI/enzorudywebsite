@@ -3,7 +3,7 @@ import { useLanguage } from '@/i18n';
 
 export function ProfileSidebar() {
   const { language } = useLanguage();
-  const displayName = language === 'zh' ? 'Enzo Rudy SEKKAI 夏立' : 'Enzo Rudy SEKKAI';
+  const displayName = language === 'zh' ? 'Enzo Rudy SEKKAI (夏立)' : 'Enzo Rudy SEKKAI';
 
   return (
     <aside
