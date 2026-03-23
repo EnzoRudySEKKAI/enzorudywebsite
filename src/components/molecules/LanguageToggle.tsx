@@ -17,9 +17,11 @@ export function LanguageToggle() {
     let newPath: string;
     
     if (newLang === 'zh') {
-      // Switch to Chinese - add /cn prefix
+      // Switch to Chinese - add /cn prefix (only if not already there)
       if (currentPath === '/') {
         newPath = '/cn';
+      } else if (currentPath.startsWith('/cn')) {
+        newPath = currentPath;
       } else {
         newPath = '/cn' + currentPath;
       }
