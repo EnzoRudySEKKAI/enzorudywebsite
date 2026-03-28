@@ -33,7 +33,10 @@ export const enTranslations = {
   },
   skills: {
     backend: 'Backend',
+    ai: 'AI',
     frontend: 'Frontend',
+    database: 'Database',
+    infrastructure: 'Infrastructure / DevOps',
     languages: 'Languages',
     softSkills: 'Soft Skills',
   },
@@ -296,16 +299,16 @@ export const enTranslations = {
   },
   experiences: [
     {
-      title: 'Fulltime .NET Backend Developer',
+      title: 'Fulltime .NET Backend Engineer',
       company: 'Hager - Bordeaux, France',
       period: '2023/09 - 2025/08',
-      description: 'Developed backend solutions in C# using the .NET framework, with a DDD architecture and Azure infrastructure. Key projects included a physical event simulator for virtual devices and a solution to manage installations. Wrote unit tests, integration tests, and technical documentation.',
+      description: 'Developed robust C#/.NET backends on Azure for next-generation Hager devices, optimizing execution via parallel processing, DDD, and relational/graph databases. Worked closely with front-end teams in an Agile environment to design a physical event simulator for virtual devices and a complete installation management solution. Maintained strict code quality and system reliability with unit tests, integration tests, and technical documentation.',
     },
     {
-      title: 'Intern .NET Backend Developer',
+      title: 'Intern .NET Backend Engineer',
       company: 'Hager - Bordeaux, France',
       period: '2023/04 - 2023/09',
-      description: 'Developed a backend solution in C# with .NET to enable internal users to modify device environments. Applied Domain-Driven Design (DDD) architecture, deployed the application on Azure infrastructure, and operated within an Agile environment using Azure DevOps.',
+      description: 'Built a C#/.NET backend solution on Azure for device environment configuration, architected purely on Domain-Driven Design (DDD) principles.',
     },
     {
       title: 'Sales Adviser (Student Job)',

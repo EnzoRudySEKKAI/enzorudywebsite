@@ -33,7 +33,10 @@ export const zhTranslations = {
   },
   skills: {
     backend: '后端',
+    ai: '人工智能',
     frontend: '前端',
+    database: '数据库',
+    infrastructure: '基础设施 / DevOps',
     languages: '语言',
     softSkills: '软技能',
   },
@@ -296,16 +299,16 @@ export const zhTranslations = {
   },
   experiences: [
     {
-      title: '.NET后端开发工程师（全职）',
+      title: '.NET后端工程师（全职）',
       company: 'Hager - Bordeaux, France',
       period: '2023/09 - 2025/08',
-      description: '使用.NET框架开发C#后端解决方案，采用DDD架构和Azure基础设施。主要项目包括虚拟设备的物理事件模拟器和管理安装解决方案。编写单元测试、集成测试和技术文档。',
+      description: '在Azure上为新一代Hager设备开发健壮的C#/.NET后端，通过并行处理、DDD和关系型/图数据库优化执行。与前端团队紧密合作，在敏捷环境中设计虚拟设备的物理事件模拟器和完整的安装管理解决方案。通过单元测试、集成测试和技术文档保持严格的代码质量和系统可靠性。',
     },
     {
-      title: '.NET后端开发工程师（实习）',
+      title: '.NET后端工程师（实习）',
       company: 'Hager - Bordeaux, France',
       period: '2023/04 - 2023/09',
-      description: '使用.NET开发C#后端解决方案，使内部用户能够修改设备环境。应用领域驱动设计（DDD）架构，将应用程序部署在Azure基础设施上，并在使用Azure DevOps的敏捷环境中工作。',
+      description: '在Azure上构建了用于设备环境配置的C#/.NET后端解决方案，纯采用领域驱动设计（DDD）原则架构。',
     },
     {
       title: '销售顾问（学生兼职）',

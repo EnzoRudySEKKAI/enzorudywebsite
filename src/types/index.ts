@@ -23,3 +23,13 @@ export interface Hobby {
   description: string;
   icon: React.ElementType;
 }
+
+export interface Skills {
+  backend: string[];
+  ai: string[];
+  frontend: string[];
+  database: string[];
+  infrastructure: string[];
+  softSkills: string[];
+  languages: string[];
+}
