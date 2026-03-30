@@ -5,10 +5,6 @@ import {
   ExternalLink,
   Film,
   Clapperboard,
-  Package,
-  FileText,
-  CheckSquare,
-  Route,
   Cloud,
   Database,
   Code2,
@@ -97,14 +93,7 @@ export function VemakinPage() {
   const t = language === "zh" ? zhTranslations.vemakin : enTranslations.vemakin;
   const isZh = language === "zh";
 
-  const features = [
-    { icon: Clapperboard, ...t.features.projectManagement },
-    { icon: Package, ...t.features.equipmentInventory },
-    { icon: Film, ...t.features.shotManagement },
-    { icon: FileText, ...t.features.notesSystem },
-    { icon: CheckSquare, ...t.features.postProduction },
-    { icon: Route, ...t.features.routePlanning },
-  ];
+  const features: { icon: React.ComponentType<{ className?: string }>; title: string; description: string }[] = [];
 
   const frontendTech = isZh
     ? [
@@ -251,6 +240,7 @@ export function VemakinPage() {
         </section>
 
         {/* Features */}
+        {features.length > 0 && (
         <section className="mb-12">
           <SectionHeader title={t.features.title} icon={Clapperboard} />
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -276,6 +266,7 @@ export function VemakinPage() {
             ))}
           </div>
         </section>
+        )}
 
         {/* Architecture */}
         <section className="mb-12">

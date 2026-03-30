@@ -1,3 +1,4 @@
+import { Eye, Download } from 'lucide-react';
 import { ContactInfo, ResumeNavLinks } from '@/components/molecules';
 import { useLanguage } from '@/i18n';
 
@@ -28,7 +29,24 @@ export function ProfileSidebar() {
         </div>
 
         {/* Action Buttons */}
-        <div className="space-y-2 mb-6">
+        <div className="flex gap-2 mb-6">
+          <a
+            href="/Enzo_Rudy_SEKKAI_Resume_Eng.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex-1 flex items-center justify-center gap-2 px-4 py-2 text-sm font-medium text-white bg-github-btn-bg hover:bg-github-btn-hover border border-github-border rounded-md transition-colors duration-200"
+          >
+            <Eye className="w-4 h-4" />
+            {language === 'zh' ? '查看简历' : 'View Resume'}
+          </a>
+          <a
+            href="/Enzo_Rudy_SEKKAI_Resume_Eng.pdf"
+            download
+            className="flex-1 flex items-center justify-center gap-2 px-4 py-2 text-sm font-medium text-white bg-github-btn-bg hover:bg-github-btn-hover border border-github-border rounded-md transition-colors duration-200"
+          >
+            <Download className="w-4 h-4" />
+            {language === 'zh' ? '下载简历' : 'Download Resume'}
+          </a>
         </div>
 
         {/* Contact Info */}

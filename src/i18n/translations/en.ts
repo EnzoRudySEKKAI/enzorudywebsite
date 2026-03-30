@@ -44,14 +44,7 @@ export const enTranslations = {
     title: 'Vemakin',
     subtitle: 'Production OS for Filmmaking',
     description: 'A comprehensive Production Operating System designed specifically for filmmaking and media production management. It provides a centralized, synchronized ecosystem for managing projects, equipment inventory, shot lists, notes, and post-production workflows.',
-    features: {
-      projectManagement: 'Project Management',
-      equipmentInventory: 'Equipment Inventory',
-      shotManagement: 'Shot Management',
-      notesSystem: 'Notes System',
-      postProduction: 'Post-Production',
-      routePlanning: 'Route Planning',
-    },
+    features: {},
     builtWith: 'Built with',
     moreInfo: 'More Information',
     visitSite: 'Visit site',
@@ -73,30 +66,6 @@ export const enTranslations = {
     },
     features: {
       title: 'Key Features',
-      projectManagement: {
-        title: 'Project Management',
-        description: 'Create and manage multiple productions with complete data isolation. Contextual actions allow adding notes, tasks, and shots directly from project views.',
-      },
-      equipmentInventory: {
-        title: 'Equipment Inventory',
-        description: 'Track personal gear and access a comprehensive gear catalog with technical specifications. Auto-specifications retrieve data like sensor size, focal length, and weight.',
-      },
-      shotManagement: {
-        title: 'Shot Management',
-        description: 'Plan, organize, and track shots with GPS coordinates and route optimization. Associate locations, mark status, and link specific gear to shots.',
-      },
-      notesSystem: {
-        title: 'Notes System',
-        description: 'Centralized note-taking linked to projects, shots, and equipment. Rich text support with Markdown-enabled editor and categorization.',
-      },
-      postProduction: {
-        title: 'Post-Production Tasks',
-        description: 'Manage tasks and workflows for the post-production phase. Status workflow from Pending → In Progress → Completed with priority levels.',
-      },
-      routePlanning: {
-        title: 'Route Planning',
-        description: 'Automatic route calculation between shoot locations using Google Routes API. Multi-stop routes with distance and duration calculations.',
-      },
     },
     architecture: {
       title: 'Architecture',

@@ -44,14 +44,7 @@ export const zhTranslations = {
     title: 'Vemakin',
     subtitle: '电影制作生产操作系统',
     description: '一款专为电影制作和媒体生产管理设计的综合生产操作系统。它提供了一个集中化、同步化的生态系统，用于管理项目、设备清单、镜头列表、笔记和后期制作工作流程。',
-    features: {
-      projectManagement: '项目管理',
-      equipmentInventory: '设备清单',
-      shotManagement: '镜头管理',
-      notesSystem: '笔记系统',
-      postProduction: '后期制作',
-      routePlanning: '路线规划',
-    },
+    features: {},
     builtWith: '技术栈',
     moreInfo: '更多信息',
     visitSite: '访问网站',
@@ -73,30 +66,6 @@ export const zhTranslations = {
     },
     features: {
       title: '核心功能',
-      projectManagement: {
-        title: '项目管理',
-        description: '创建和管理多个项目，实现完全的数据隔离。上下文操作允许直接从项目视图添加笔记、任务和镜头。',
-      },
-      equipmentInventory: {
-        title: '设备清单',
-        description: '追踪个人设备，访问包含技术规格的综合性设备目录。自动规格功能可获取传感器尺寸、焦距和重量等数据。',
-      },
-      shotManagement: {
-        title: '镜头管理',
-        description: '使用GPS坐标和路线优化来规划、组织和追踪镜头。关联位置、标记状态，并将特定设备链接到镜头。',
-      },
-      notesSystem: {
-        title: '笔记系统',
-        description: '与项目、镜头和设备关联的集中化笔记记录。支持富文本，配备Markdown编辑器，可进行分类整理。',
-      },
-      postProduction: {
-        title: '后期制作任务',
-        description: '管理后期制作阶段的工作任务和流程。状态工作流从待处理→进行中→已完成，支持优先级设置。',
-      },
-      routePlanning: {
-        title: '路线规划',
-        description: '使用Google Routes API自动计算拍摄地点之间的路线。支持多站点路线，可计算距离和行程时间。',
-      },
     },
     architecture: {
       title: '系统架构',

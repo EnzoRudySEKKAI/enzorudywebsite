@@ -21,7 +21,7 @@ export function ExperienceItem({ experience, index }: ExperienceItemProps) {
       <h4 className="font-semibold text-white">{experience.title}</h4>
       <p className="text-sm text-github-accent">{experience.company}</p>
       <p className="text-xs text-github-text-muted mb-2">{experience.period}</p>
-      <p className="text-sm text-github-text-muted">{experience.description}</p>
+      <p className="text-sm text-github-text leading-relaxed">{experience.description}</p>
     </div>
   );
 }

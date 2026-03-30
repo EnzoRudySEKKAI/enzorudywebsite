@@ -1,14 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import {
-  Building2,
-  ExternalLink,
-  Film,
-  Clapperboard,
-  Package,
-  FileText,
-  CheckSquare,
-  Route,
-} from "lucide-react";
+import { Building2, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { SectionHeader } from "@/components/atoms";
 import { Tooltip, TooltipTrigger, TooltipContent } from "@/components/ui/tooltip";
@@ -18,15 +9,6 @@ export function CompanyProjectSection() {
   const navigate = useNavigate();
   const { language } = useLanguage();
   const t = language === "zh" ? zhTranslations : enTranslations;
-
-  const features = [
-    { icon: Clapperboard, label: t.companyProject.features.projectManagement },
-    { icon: Package, label: t.companyProject.features.equipmentInventory },
-    { icon: Film, label: t.companyProject.features.shotManagement },
-    { icon: FileText, label: t.companyProject.features.notesSystem },
-    { icon: CheckSquare, label: t.companyProject.features.postProduction },
-    { icon: Route, label: t.companyProject.features.routePlanning },
-  ];
 
   const techStack = [
     "React 19",
@@ -57,21 +39,6 @@ export function CompanyProjectSection() {
             <p className="text-github-text max-w-3xl">
               {t.companyProject.description}
             </p>
-          </div>
-
-          {/* Key Features */}
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 mb-6">
-            {features.map((feature) => (
-              <div
-                key={feature.label}
-                className="flex items-center gap-2 p-3 bg-github-bg/50 rounded-lg border border-github-border/50"
-              >
-                <feature.icon className="w-4 h-4 text-github-accent" />
-                <span className="text-sm text-github-text">
-                  {feature.label}
-                </span>
-              </div>
-            ))}
           </div>
 
           {/* Tech Stack */}
